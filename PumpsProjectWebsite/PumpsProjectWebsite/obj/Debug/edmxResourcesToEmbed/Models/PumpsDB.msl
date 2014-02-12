@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PumpsDBModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="TimeLogs">
+      <EntityTypeMapping TypeName="PumpsDBModel.TimeLog">
+        <MappingFragment StoreEntitySet="TimeLog">
+          <ScalarProperty Name="TimeElapsed" ColumnName="TimeElapsed" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

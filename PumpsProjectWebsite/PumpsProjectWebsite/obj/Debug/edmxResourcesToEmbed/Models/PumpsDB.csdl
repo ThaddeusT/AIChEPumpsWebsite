@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PumpsDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TimeLogs" EntityType="PumpsDBModel.TimeLog" />
+  </EntityContainer>
+  <EntityType Name="TimeLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="User" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Date" Precision="0" />
+    <Property Type="DateTime" Name="StartTime" Precision="3" />
+    <Property Type="DateTime" Name="EndTime" Precision="3" />
+    <Property Type="Int64" Name="TimeElapsed" />
+  </EntityType>
+</Schema>

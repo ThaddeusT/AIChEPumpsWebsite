@@ -1,0 +1,29 @@
+﻿@using PumpsProjectWebsite.Helpers
+@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+@if(User.IsInRole(Role.Programmer))
+{
+<script>
+    $(document).ready(function () {
+        $('#TimeClock').load('/TimeLogging');
+    });
+</script>
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+            </hgroup>
+                    @if(User.IsInRole(Role.Programmer))
+                {
+                    <div id ="TimeClock"></div>
+                }
+        </div>
+    </section>
+}
+
+

@@ -1,0 +1,74 @@
+﻿@model PumpsProjectWebsite.Models.TimeLog
+
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+<script>
+    $(document).ready(function () {
+        startTime();
+    });
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        // add a zero in front of numbers<10
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+        t = setTimeout(function () { startTime() }, 500);
+    }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    function clockIn() {
+        $.post('@Url.Action("ClockIn")', function (data) {
+            @*//Check if loading the information was successful.*@
+            if (data.Success) {
+                alert("Clocked In");
+                @*//Prevent premature submission.*@
+                $("#LoggingTime").attr('value', 'Clock Out');
+                $("#LoggingTime").attr('onclick', "clockOut");
+                $("#LoggingTime").html("Clock Out");
+            }
+            else {
+                alert(data.Error);
+            }          
+        });
+    }
+    
+    function clockOut() {
+        $.post('@Url.Action("ClockOut")', function (data) {
+            @*//Check if loading the information was successful.*@
+            if (data.Success) {
+                alert("Clocked Out");
+                @*//Prevent premature submission.*@
+                $("#LoggingTime").attr('value', 'Clock In');
+                $("#LoggingTime").attr('onclick', "clockIn()");
+                $("#LoggingTime").html("Clock In");
+                }
+            else {
+                alert(data.Error);
+            }          
+        });
+    }
+</script>
+<div id="TimeLogging" style="text-align: center;">
+<div style="text-align: center; font: 30px TimesNewRoman; color: white" id="txt"></div>
+
+@if (Model.StartTime == null)
+{
+    <button id="LoggingTime" value="Clock In" onclick="clockIn()">Clock In</button>
+}
+else
+{
+    if (Model.EndTime == null)
+    {
+        <button id="LoggingTime" value ="Clock Out" onclick="clockOut()">Clock Out</button>
+    }
+}
+</div>
